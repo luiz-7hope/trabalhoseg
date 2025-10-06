@@ -16,8 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Verifica se os campos estão preenchidos
         if (empty($nome) || empty($emailCpf) || empty($_POST['senha'])) {
-            echo "<p>❌ Preencha todos os campos.</p>";
-            echo "<p><a href='criar-conta.html'>Voltar</a></p>";
+            echo "<script>
+                    alert('❌ Preencha todos os campos.');
+                    window.history.back();
+                  </script>";
             exit;
         }
 
@@ -28,19 +30,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $verifica->store_result();
 
         if ($verifica->num_rows > 0) {
-            echo "<p>❌ Já existe uma conta com esse e-mail ou CPF.</p>";
-            echo "<p><a href='criar-conta.html'>Tentar novamente</a></p>";
+            echo "<script>
+                    alert('❌ Já existe uma conta com esse e-mail ou CPF.');
+                    window.location.href = 'criar-conta.html';
+                  </script>";
         } else {
             // Insere o novo usuário
             $stmt = $conn->prepare("INSERT INTO alunos (nome, email_cpf, senha) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $nome, $emailCpf, $senha);
 
             if ($stmt->execute()) {
-                echo "<p>✅ Conta criada com sucesso!</p>";
-                echo "<p>Login: <strong>$emailCpf</strong></p>";
-                echo "<p><a href='index.html'>Ir para login</a></p>";
+                // Cadastro OK → mostra pop-up e redireciona
+                echo "<script>
+                        if (confirm('✅ Conta criada com sucesso!\\nDeseja voltar para o login?')) {
+                            window.location.href = 'index.html';
+                        } else {
+                            window.location.href = 'criar-conta.html';
+                        }
+                      </script>";
             } else {
-                echo "<p>❌ Erro ao cadastrar: " . $stmt->error . "</p>";
+                echo "<script>
+                        alert('❌ Erro ao cadastrar: " . addslashes($stmt->error) . "');
+                        window.history.back();
+                      </script>";
             }
 
             $stmt->close();
@@ -50,11 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conn->close();
 
     } else {
-        echo "<p>❌ Dados do formulário incompletos.</p>";
-        echo "<p><a href='criar-conta.html'>Voltar</a></p>";
+        echo "<script>
+                alert('❌ Dados do formulário incompletos.');
+                window.history.back();
+              </script>";
     }
 
 } else {
-    echo "<p>❌ Requisição inválida.</p>";
+    echo "<script>
+            alert('❌ Requisição inválida.');
+            window.history.back();
+          </script>";
 }
 ?>
