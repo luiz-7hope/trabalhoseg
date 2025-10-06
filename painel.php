@@ -14,6 +14,6 @@ if (!isset($_SESSION["usuario_id"])) {
 <body>
   <h1>Bem-vindo ao Painel do Aluno</h1>
   <p>Você está logado com sucesso!</p>
-  <a href="logout.php">Sair</a>
+  <a href="index.html">Sair</a>
 </body>
 </html>
