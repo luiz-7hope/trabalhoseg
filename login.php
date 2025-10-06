@@ -22,15 +22,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: painel.php");
             exit();
         } else {
-            echo "Senha incorreta.";
+            // Senha incorreta
+            echo "<script>
+                    alert('❌ Senha incorreta, tente novamente!');
+                    window.history.back(); // Volta para a tela de login
+                  </script>";
         }
     } else {
-        echo "Usuário não encontrado.";
+        // Usuário não encontrado
+        echo "<script>
+                alert('⚠️ Usuário não encontrado!');
+                window.history.back(); // Volta para a tela de login
+              </script>";
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    echo "Requisição inválida.";
+    // Requisição inválida
+    echo "<script>
+            alert('❌ Requisição inválida.');
+            window.history.back();
+          </script>";
 }
 ?>

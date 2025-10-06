@@ -5,6 +5,35 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portal do Aluno - Escola Pública</title>
+  <style>
+    /* Estilos para os botões de perfil */
+    .user-type-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .user-btn {
+      flex: 1;
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f5f5f5;
+      font-weight: bold;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .user-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .user-btn.active {
+      background-color: #4a90e2;
+      color: white;
+      border-color: #4a90e2;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -18,37 +47,46 @@
 
       <section class="form-wrap">
         <h2 id="title">Login</h2>
-        <p class="lead">Use seu e-mail ou CPF e sua senha para acessar o sistema.</p>
+        <p class="lead">Escolha seu perfil e use seu e-mail ou CPF e sua senha para acessar o sistema.</p>
 
-        <form action="login.php" method="POST" autocomplete="on" novalidate>
-  <div class="field">
-    <label for="emailCpf">E-mail ou CPF</label>
-    <input id="emailCpf" name="emailCpf" type="text" inputmode="email" placeholder="ex: aluno@escola.gov.br ou 000.000.000-00" required aria-required="true">
-  </div>
+        <!-- Botões de escolha de usuário -->
+        <div class="user-type-buttons">
+          <button type="button" class="user-btn" data-type="aluno">Aluno</button>
+          <button type="button" class="user-btn" data-type="professor">Professor</button>
+          <button type="button" class="user-btn" data-type="pais">Pais</button>
+        </div>
 
-  <div class="field">
-    <label for="password">Senha</label>
-    <input id="password" name="password" type="password" placeholder="Sua senha" minlength="6" required aria-required="true">
-  </div>
+        <form id="loginForm" action="login.php" method="POST" autocomplete="on" novalidate>
+          <input type="hidden" name="userType" id="userType"> <!-- campo escondido para enviar ao servidor -->
 
-  <div class="row" style="justify-content:space-between;align-items:center">
-    <label class="remember"><input type="checkbox" id="remember" name="remember"> Lembrar-me</label>
-    <div><a href="#" class="link">Esqueci minha senha</a></div>
-  </div>
+          <div class="field">
+            <label for="emailCpf">E-mail ou CPF</label>
+            <input id="emailCpf" name="emailCpf" type="text" inputmode="email" placeholder="ex: aluno@escola.gov.br ou 000.000.000-00" required aria-required="true">
+          </div>
 
-  <button class="btn" type="submit">Entrar</button>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" name="password" type="password" placeholder="Sua senha" minlength="6" required aria-required="true">
+          </div>
 
-  <div class="alt-actions muted-note">
-    <span>Primeiro acesso?</span>
-    <a href="criar-conta.html" class="link">Criar conta</a>
-    <span>•</span>
-    <a href="#" class="link">Ajuda</a>
-  </div>
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <label class="remember"><input type="checkbox" id="remember" name="remember"> Lembrar-me</label>
+            <div><a href="#" class="link">Esqueci minha senha</a></div>
+          </div>
 
-  <div class="policy">
-    Ao entrar você concorda com os termos de uso e com a política de privacidade da rede.
-  </div>
-</form>
+          <button class="btn" type="submit">Entrar</button>
+
+          <div class="alt-actions muted-note">
+            <span>Primeiro acesso?</span>
+            <a href="criar-conta.html" class="link">Criar conta</a>
+            <span>•</span>
+            <a href="#" class="link">Ajuda</a>
+          </div>
+
+          <div class="policy">
+            Ao entrar você concorda com os termos de uso e com a política de privacidade da rede.
+          </div>
+        </form>
 
         <footer class="small">© GES - SISTEMA DE GESTÃO ESCOLAR — Todos os direitos reservados</footer>
       </section>
@@ -56,23 +94,45 @@
   </div>
 
   <script>
-    // JS básico para validação simples local
+    // Seleção de tipo de usuário
+    const userButtons = document.querySelectorAll('.user-btn');
+    const userTypeInput = document.getElementById('userType');
+
+    userButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        userButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        userTypeInput.value = btn.dataset.type;
+      });
+    });
+
+    // Validação do formulário
     document.getElementById('loginForm').addEventListener('submit', function(e){
       e.preventDefault();
+
       const field = document.getElementById('emailCpf');
       const pwd = document.getElementById('password');
+
+      if(!userTypeInput.value){
+        alert('Selecione o tipo de usuário');
+        return;
+      }
+
       if(!field.value.trim()){
         alert('Informe seu e-mail institucional ou CPF');
         field.focus();
         return;
       }
+
       if(pwd.value.length < 6){
         alert('A senha deve ter pelo menos 6 caracteres');
         pwd.focus();
         return;
       }
-      // Aqui você chamaria a API de login
-      alert('Formulário válido — enviar para o servidor (exemplo)');
+
+      // Aqui você enviaria os dados para o servidor
+      alert(`Login válido como ${userTypeInput.value} — enviar para o servidor`);
+      this.submit(); // envia para o login.php
     });
   </script>
 </body>
