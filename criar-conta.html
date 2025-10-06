@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Criar Conta - GES</title>
+  <link rel="stylesheet" href="estilo.css"> <!-- Use o mesmo estilo do seu index -->
+</head>
+<body>
+  <div class="container">
+    <div class="card" role="main" aria-labelledby="title">
+      <aside class="brand" aria-hidden="true">
+        <div class="logo"><div class="mark">GES</div> SISTEMA DE GESTÃO ESCOLAR - Rede Pública</div>
+        <h1>Criação de Conta</h1>
+        <p>Cadastre-se para acessar o portal do aluno.</p>
+      </aside>
+
+      <section class="form-wrap">
+        <h2 id="title">Criar Conta</h2>
+        <p class="lead">Preencha seus dados abaixo para se registrar.</p>
+
+        <form action="cadastrar.php" method="POST">
+          <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" name="nome" id="nome" required>
+          </div>
+
+          <div class="field">
+            <label for="emailCpf">E-mail ou CPF</label>
+            <input type="text" name="emailCpf" id="emailCpf" required>
+          </div>
+
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" required minlength="6">
+          </div>
+
+          <button type="submit" class="btn">Cadastrar</button>
+
+          <div class="alt-actions muted-note">
+            <a href="index.html" class="link">Voltar para login</a>
+          </div>
+        </form>
+
+        <footer class="small">© GES - SISTEMA DE GESTÃO ESCOLAR</footer>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
