@@ -5,47 +5,71 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Criar Conta - GES</title>
-  <link rel="stylesheet" href="estilo.css"> <!-- Use o mesmo estilo do seu index -->
 </head>
 <body>
   <div class="container">
-    <div class="card" role="main" aria-labelledby="title">
-      <aside class="brand" aria-hidden="true">
-        <div class="logo"><div class="mark">GES</div> SISTEMA DE GESTÃO ESCOLAR - Rede Pública</div>
-        <h1>Criação de Conta</h1>
-        <p>Cadastre-se para acessar o portal do aluno.</p>
+    <div class="card">
+      <aside class="brand">
+        <div class="logo"><div class="mark">GES</div> SISTEMA DE GESTÃO ESCOLAR</div>
+        <h1>Crie sua conta</h1>
       </aside>
-
       <section class="form-wrap">
-        <h2 id="title">Criar Conta</h2>
-        <p class="lead">Preencha seus dados abaixo para se registrar.</p>
-
-        <form action="cadastrar.php" method="POST">
+        <form action="cadastrar.php" method="POST" id="cadForm">
           <div class="field">
             <label for="nome">Nome completo</label>
             <input type="text" name="nome" id="nome" required>
           </div>
-
+          <div class="field">
+            <label for="tipoUsuario">Tipo de usuário</label>
+            <select name="tipoUsuario" id="tipoUsuario" required>
+              <option value="">Selecione...</option>
+              <option value="alunos">Aluno</option>
+              <option value="pais">Pais</option>
+              <option value="professores">Professor</option>
+            </select>
+          </div>
           <div class="field">
             <label for="emailCpf">E-mail ou CPF</label>
             <input type="text" name="emailCpf" id="emailCpf" required>
           </div>
-
           <div class="field">
             <label for="senha">Senha</label>
             <input type="password" name="senha" id="senha" required minlength="6">
           </div>
-
           <button type="submit" class="btn">Cadastrar</button>
-
           <div class="alt-actions muted-note">
-            <a href="index.html" class="link">Voltar para login</a>
+            <a href="index.html" class="link">Voltar</a>
           </div>
         </form>
-
-        <footer class="small">© GES - SISTEMA DE GESTÃO ESCOLAR</footer>
       </section>
     </div>
   </div>
+  <script>
+    function validarEmail(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function validarCPF(cpf){
+      cpf = cpf.replace(/\D/g, '');
+      if (cpf.length !== 11 || /^([0-9])\1+$/.test(cpf)) return false;
+      let soma = 0, resto;
+      for (let i=1; i<=9; i++) soma += parseInt(cpf.substring(i-1,i))*(11-i);
+      resto = (soma*10)%11;
+      if ((resto==10)||(resto==11)) resto=0;
+      if (resto != parseInt(cpf.substring(9,10))) return false;
+      soma=0;
+      for (let i=1; i<=10; i++) soma += parseInt(cpf.substring(i-1,i))*(12-i);
+      resto = (soma*10)%11;
+      if ((resto==10)||(resto==11)) resto=0;
+      if (resto != parseInt(cpf.substring(10,11))) return false;
+      return true;
+    }
+    document.getElementById('cadForm').addEventListener('submit', function(e){
+      const val = document.getElementById('emailCpf').value.trim();
+      if (!validarEmail(val) && !validarCPF(val)){
+        e.preventDefault();
+        alert('Digite um e-mail ou CPF válido.');
+      }
+    });
+  </script>
 </body>
 </html>

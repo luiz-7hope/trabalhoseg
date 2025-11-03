@@ -1,48 +1,48 @@
 <?php
 session_start();
-include 'conexao.php';
+require_once 'conexao.php'; // deve definir $pdo
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $emailCpf = trim($_POST["emailCpf"]);
-    $senha = $_POST["password"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $emailCpf = trim($_POST['emailCpf']);
+    $senha = $_POST['password'];
+    $tipo = $_POST['userType'];
 
-    // Prevenção básica contra SQL Injection
-    $stmt = $conn->prepare("SELECT id, senha FROM alunos WHERE email_cpf = ?");
-    $stmt->bind_param("s", $emailCpf);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($id, $senha_hash);
-        $stmt->fetch();
-
-        if (password_verify($senha, $senha_hash)) {
-            // Login bem-sucedido
-            $_SESSION["usuario_id"] = $id;
-            header("Location: painel.php");
-            exit();
-        } else {
-            // Senha incorreta
-            echo "<script>
-                    alert('❌ Senha incorreta, tente novamente!');
-                    window.history.back(); // Volta para a tela de login
-                  </script>";
-        }
-    } else {
-        // Usuário não encontrado
-        echo "<script>
-                alert('⚠️ Usuário não encontrado!');
-                window.history.back(); // Volta para a tela de login
-              </script>";
+    if (!in_array($tipo, ['alunos', 'pais', 'professores'])) {
+        echo "<script>alert('Tipo de usuário inválido!');window.location='index.html';</script>";
+        exit;
     }
 
-    $stmt->close();
-    $conn->close();
+    // Consulta o banco
+    $stmt = $pdo->prepare("SELECT * FROM $tipo WHERE emailCpf = ?");
+    $stmt->execute([$emailCpf]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verifica senha (ajuste conforme seu banco)
+    if ($user && password_verify($senha, $user['senha'])) {
+        $_SESSION['usuario_id'] = $user['id'];
+        $_SESSION['usuario'] = $user['nome'];
+        $_SESSION['tipo'] = $tipo;
+        $_SESSION['logado'] = true;
+
+        // Redireciona conforme o tipo
+        switch ($tipo) {
+            case 'alunos':
+                header('Location: painel_aluno.php');
+                break;
+            case 'pais':
+                header('Location: painel_pais.php');
+                break;
+            case 'professores':
+                header('Location: painel_professor.php');
+                break;
+        }
+        exit;
+    } else {
+        echo "<script>alert('Usuário ou senha incorretos!');window.location='index.html';</script>";
+        exit;
+    }
 } else {
-    // Requisição inválida
-    echo "<script>
-            alert('❌ Requisição inválida.');
-            window.history.back();
-          </script>";
+    header('Location: index.html');
+    exit;
 }
 ?>

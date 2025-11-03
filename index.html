@@ -4,15 +4,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Portal do Aluno - Escola Pública</title>
+  <title>Portal GES - Login</title>
   <style>
-    /* Estilos para os botões de perfil */
     .user-type-buttons {
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
     }
-
     .user-btn {
       flex: 1;
       padding: 10px;
@@ -23,117 +21,66 @@
       font-weight: bold;
       transition: background-color 0.2s, border-color 0.2s;
     }
-
-    .user-btn:hover {
-      background-color: #e0e0e0;
-    }
-
+    .user-btn:hover { background-color: #e0e0e0; }
     .user-btn.active {
-      background-color: #4a90e2;
+      background-color: #1b6f8a;
       color: white;
-      border-color: #4a90e2;
+      border-color: #1b6f8a;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="card" role="main" aria-labelledby="title">
-      <aside class="brand" aria-hidden="true">
-        <div class="logo"><div class="mark">GES</div> SISTEMA DE GESTÃO ESCOLAR - Rede Pública</div>
-        <h1>Bem-vindo(a) ao Portal do Aluno</h1>
-        <p>Acesse suas notas, comunicados e conteúdos.</p>
-        <p style="font-size:13px;opacity:0.9">Se tiver dúvidas, procure a secretaria da sua escola.</p>
+      <aside class="brand">
+        <div class="logo"><div class="mark">GES</div> SISTEMA DE GESTÃO ESCOLAR</div>
+        <h1>Bem-vindo(a)</h1>
+        <p>Acesse com seu perfil de aluno, pais ou professor.</p>
       </aside>
-
       <section class="form-wrap">
-        <h2 id="title">Login</h2>
-        <p class="lead">Escolha seu perfil e use seu e-mail ou CPF e sua senha para acessar o sistema.</p>
-
-        <!-- Botões de escolha de usuário -->
+        <h2>Login</h2>
+        <p class="lead">Escolha seu perfil e entre no sistema.</p>
         <div class="user-type-buttons">
-          <button type="button" class="user-btn" data-type="aluno">Aluno</button>
-          <button type="button" class="user-btn" data-type="professor">Professor</button>
+          <button type="button" class="user-btn" data-type="alunos">Aluno</button>
           <button type="button" class="user-btn" data-type="pais">Pais</button>
+          <button type="button" class="user-btn" data-type="professores">Professor</button>
         </div>
-
-        <form id="loginForm" action="login.php" method="POST" autocomplete="on" novalidate>
-          <input type="hidden" name="userType" id="userType"> <!-- campo escondido para enviar ao servidor -->
-
+        <form id="loginForm" action="login.php" method="POST">
+          <input type="hidden" name="userType" id="userType">
           <div class="field">
             <label for="emailCpf">E-mail ou CPF</label>
-            <input id="emailCpf" name="emailCpf" type="text" inputmode="email" placeholder="ex: aluno@escola.gov.br ou 000.000.000-00" required aria-required="true">
+            <input type="text" id="emailCpf" name="emailCpf" required>
           </div>
-
           <div class="field">
             <label for="password">Senha</label>
-            <input id="password" name="password" type="password" placeholder="Sua senha" minlength="6" required aria-required="true">
+            <input type="password" id="password" name="password" required minlength="6">
           </div>
-
-          <div class="row" style="justify-content:space-between;align-items:center">
-            <label class="remember"><input type="checkbox" id="remember" name="remember"> Lembrar-me</label>
-            <div><a href="#" class="link">Esqueci minha senha</a></div>
-          </div>
-
-          <button class="btn" type="submit">Entrar</button>
-
+          <button type="submit" class="btn">Entrar</button>
           <div class="alt-actions muted-note">
-            <span>Primeiro acesso?</span>
             <a href="criar-conta.html" class="link">Criar conta</a>
-            <span>•</span>
-            <a href="#" class="link">Ajuda</a>
-          </div>
-
-          <div class="policy">
-            Ao entrar você concorda com os termos de uso e com a política de privacidade da rede.
           </div>
         </form>
-
-        <footer class="small">© GES - SISTEMA DE GESTÃO ESCOLAR — Todos os direitos reservados</footer>
       </section>
     </div>
   </div>
-
   <script>
-    // Seleção de tipo de usuário
-    const userButtons = document.querySelectorAll('.user-btn');
+    const buttons = document.querySelectorAll('.user-btn');
     const userTypeInput = document.getElementById('userType');
-
-    userButtons.forEach(btn => {
+    buttons.forEach(btn => {
       btn.addEventListener('click', () => {
-        userButtons.forEach(b => b.classList.remove('active'));
+        buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         userTypeInput.value = btn.dataset.type;
       });
     });
 
-    // Validação do formulário
-    document.getElementById('loginForm').addEventListener('submit', function(e){
-      e.preventDefault();
-
-      const field = document.getElementById('emailCpf');
-      const pwd = document.getElementById('password');
-
-      if(!userTypeInput.value){
-        alert('Selecione o tipo de usuário');
-        return;
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      if (!userTypeInput.value) {
+        alert('Selecione o tipo de usuário.');
+        e.preventDefault();
       }
-
-      if(!field.value.trim()){
-        alert('Informe seu e-mail institucional ou CPF');
-        field.focus();
-        return;
-      }
-
-      if(pwd.value.length < 6){
-        alert('A senha deve ter pelo menos 6 caracteres');
-        pwd.focus();
-        return;
-      }
-
-      // Aqui você enviaria os dados para o servidor
-      alert(`Login válido como ${userTypeInput.value} — enviar para o servidor`);
-      this.submit(); // envia para o login.php
     });
   </script>
 </body>
 </html>
+

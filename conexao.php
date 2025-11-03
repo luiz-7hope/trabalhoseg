@@ -1,12 +1,19 @@
 <?php
-$host = "localhost"; // ou o IP do seu servidor de banco de dados
-$db = "gestao_escolar"; // Nome do banco de dados
-$user = "root"; // Seu usuário MySQL
-$pass = "senac"; // Sua senha MySQL (deixe vazio se não houver)
+$host = 'localhost';
+$db   = 'gestao_escolar';
+$user = 'root';
+$pass = 'dani0303';
+$charset = 'utf8mb4';
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    die('Erro na conexão: ' . $e->getMessage());
 }
 ?>
