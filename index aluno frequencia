@@ -1,0 +1,119 @@
+Index.html:
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>frequencia_escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Cadastro de Frequência</h1>
+
+        <form id="formFrequencia">
+            <label>Aluno/Colaborador:</label>
+            <input type="text" id="nome" required>
+
+            <label>Disciplina/Turma:</label>
+            <input type="text" id="disciplina" required>
+
+            <label>Data:</label>
+            <input type="date" id="data" required>
+
+            <label>Presença:</label>
+            <select id="presenca" required>
+                <option value="">Selecione</option>
+                <option value="Presente">Presente</option>
+                <option value="Ausente">Ausente</option>
+            </select>
+
+            <button type="button" onclick="registrar()">Registrar</button>
+        </form>
+
+        <h2>📋 Registros de Frequência</h2>
+        <ul id="listaFrequencia"></ul>
+    </div>
+
+    <script>
+        const frequencias = [];
+
+        // RF01.1: Criar novo registro
+        function registrar() {
+            const nome = document.getElementById("nome").value;
+            const disciplina = document.getElementById("disciplina").value;
+            const data = document.getElementById("data").value;
+            const presenca = document.getElementById("presenca").value;
+
+            if (!nome || !disciplina || !data || !presenca) {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            // RF01.5: Impedir duplicados no mesmo dia/disciplina
+            const duplicado = frequencias.some(f => f.nome === nome && f.disciplina === disciplina && f.data === data);
+            if (duplicado) {
+                alert("Já existe registro para este aluno na mesma disciplina e data!");
+                return;
+            }
+
+            frequencias.push({ nome, disciplina, data, presenca });
+            atualizarLista();
+            document.getElementById("formFrequencia").reset();
+        }
+
+        // RF01.2 e RF01.3: Editar e Excluir
+        function atualizarLista() {
+            const lista = document.getElementById("listaFrequencia");
+            lista.innerHTML = "";
+
+            frequencias.forEach((f, i) => {
+                const item = document.createElement("li");
+                item.textContent = `${i + 1}. 👤 ${f.nome} | 📘 ${f.disciplina} | 📅 ${f.data} | ✅ ${f.presenca}`;
+
+                // Botão Editar
+                const btnEditar = document.createElement("button");
+                btnEditar.textContent = "✏️ Editar";
+                btnEditar.onclick = () => editarRegistro(i);
+
+                // Botão Excluir
+                const btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "🗑️ Excluir";
+                btnExcluir.onclick = () => excluirRegistro(i);
+
+                item.appendChild(btnEditar);
+                item.appendChild(btnExcluir);
+                lista.appendChild(item);
+            });
+        }
+
+        function editarRegistro(index) {
+            const registro = frequencias[index];
+            document.getElementById("nome").value = registro.nome;
+            document.getElementById("disciplina").value = registro.disciplina;
+            document.getElementById("data").value = registro.data;
+            document.getElementById("presenca").value = registro.presenca;
+
+            // Remove o antigo para substituir
+            frequencias.splice(index, 1);
+            atualizarLista();
+        }
+
+        function excluirRegistro(index) {
+            if (confirm("Deseja realmente excluir este registro?")) {
+                frequencias.splice(index, 1);
+                atualizarLista();
+            }
+        }
+
+        // RF01.4: Filtrar registros
+        function filtrar(periodoInicio, periodoFim, turma, aluno) {
+            return frequencias.filter(f => {
+                const dentroPeriodo = (!periodoInicio || f.data >= periodoInicio) && (!periodoFim || f.data <= periodoFim);
+                const turmaOk = !turma || f.disciplina.includes(turma);
+                const alunoOk = !aluno || f.nome.includes(aluno);
+                return dentroPeriodo && turmaOk && alunoOk;
+            });
+        }
+    </script>
+</body>
+</html>
