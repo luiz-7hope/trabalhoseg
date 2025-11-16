@@ -1,0 +1,131 @@
+requerimento_escolar.java:
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class requerimento_escolar {
+
+    private List<descricao> lista = new ArrayList<>();
+    private int contadorId = 1;
+
+    // RF09.1 - Criar novo requerimento escolar
+    public void criar(String tipo, String descricao, String data) {
+        if (tipo == null || tipo.trim().isEmpty()) {
+            System.out.println("Erro: Tipo do requerimento não pode estar vazio.");
+            return;
+        }
+        if (descricao == null || descricao.trim().isEmpty()) {
+            System.out.println("Erro: Descrição não pode estar vazia.");
+            return;
+        }
+        if (data == null || data.trim().isEmpty()) {
+            System.out.println("Erro: Data não pode estar vazia.");
+            return;
+        }
+
+        descricao req = new descricao(contadorId++, tipo, descricao, "Pendente", data);
+        lista.add(req);
+        System.out.println("Requerimento escolar criado com sucesso! ID: " + req.getId());
+    }
+
+    // RF09.2 - Editar requerimentos escolares existentes
+    public void editar(int id, String novoTipo, String novaDescricao) {
+        descricao r = buscar(id);
+
+        if (r == null) {
+            System.out.println("Erro: Requerimento escolar não encontrado.");
+            return;
+        }
+
+        if (r.getStatus().equals("Deferido") || r.getStatus().equals("Indeferido")) {
+            System.out.println("Erro: Não é possível editar um requerimento escolar finalizado.");
+            return;
+        }
+
+        if (novoTipo != null && !novoTipo.trim().isEmpty()) {
+            r.setTipo(novoTipo);
+        }
+        if (novaDescricao != null && !novaDescricao.trim().isEmpty()) {
+            r.setDescricao(novaDescricao);
+        }
+
+        System.out.println("Requerimento escolar atualizado com sucesso!");
+    }
+
+    // RF09.3 - Alterar status
+    public void alterarStatus(int id, String novoStatus) {
+        descricao r = buscar(id);
+
+        if (r == null) {
+            System.out.println("Erro: Requerimento escolar não encontrado.");
+            return;
+        }
+
+        if (novoStatus == null || novoStatus.trim().isEmpty()) {
+            System.out.println("Erro: Status não pode estar vazio.");
+            return;
+        }
+
+        r.setStatus(novoStatus);
+        System.out.println("Status atualizado para: " + novoStatus);
+    }
+
+    // RF09.4 - Excluir apenas se estiver Pendente
+    public void excluir(int id) {
+        descricao r = buscar(id);
+
+        if (r == null) {
+            System.out.println("Erro: Requerimento escolar não encontrado.");
+            return;
+        }
+
+        if (!r.getStatus().equals("Pendente")) {
+            System.out.println("Erro: Só é possível excluir requerimentos escolares pendentes.");
+            return;
+        }
+
+        lista.remove(r);
+        System.out.println("Requerimento escolar excluído com sucesso.");
+    }
+
+    // RF09.5 - Consultar por tipo / status / data
+    public void consultar(String tipo, String status, String data) {
+        List<descricao> filtrados = lista.stream()
+                .filter(r -> (tipo == null || tipo.isEmpty() || r.getTipo().equalsIgnoreCase(tipo)))
+                .filter(r -> (status == null || status.isEmpty() || r.getStatus().equalsIgnoreCase(status)))
+                .filter(r -> (data == null || data.isEmpty() || r.getData().equals(data)))
+                .collect(Collectors.toList());
+
+        if (filtrados.isEmpty()) {
+            System.out.println("Nenhum requerimento escolar encontrado.");
+        } else {
+            System.out.println("\n=== RESULTADOS DA CONSULTA ===");
+            filtrados.forEach(System.out::println);
+            System.out.println("Total: " + filtrados.size() + " requerimento(s)\n");
+        }
+    }
+
+    // Listar todos os requerimentos
+    public void listarTodos() {
+        if (lista.isEmpty()) {
+            System.out.println("Nenhum requerimento escolar cadastrado.");
+            return;
+        }
+        System.out.println("\n=== TODOS OS REQUERIMENTOS ===");
+        lista.forEach(System.out::println);
+        System.out.println("Total: " + lista.size() + " requerimento(s)\n");
+    }
+
+    // Buscar por ID
+    private descricao buscar(int id) {
+        return lista.stream()
+                .filter(r -> r.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    // Obter lista completa
+    public List<descricao> obterLista() {
+        return new ArrayList<>(lista);
+    }
+}
