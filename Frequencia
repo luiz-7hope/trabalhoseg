@@ -1,0 +1,51 @@
+Frequencia.java:
+public class Frequencia {
+    private String nomeAluno;
+    private String matricula;
+    private String data;
+    private String status;
+
+    public Frequencia(String nomeAluno, String matricula, String data, String status) {
+        this.nomeAluno = nomeAluno;
+        this.matricula = matricula;
+        this.data = data;
+        this.status = status;
+    }
+
+    public String getNomeAluno() {
+        return nomeAluno;
+    }
+
+    public void setNomeAluno(String nomeAluno) {
+        this.nomeAluno = nomeAluno;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno: " + nomeAluno + " | Matrícula: " + matricula + " | Data: " + data + " | Status: " + status;
+    }
+}
