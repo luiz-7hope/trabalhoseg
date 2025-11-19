@@ -1,0 +1,126 @@
+index.html:]
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>sistema_requerimentos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Sistema de Requerimentos</h1>
+
+        <form id="formRequerimento">
+            <label>Tipo do Requerimento:</label>
+            <input type="text" id="tipo" placeholder="Ex: Justificativa de falta, Declaração..." required>
+
+            <label>Descrição:</label>
+            <input type="text" id="descricao" required>
+
+            <label>Data:</label>
+            <input type="date" id="data" required>
+
+            <label>Status:</label>
+            <select id="status" required>
+                <option value="">Selecione</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Em análise">Em análise</option>
+                <option value="Deferido">Deferido</option>
+                <option value="Indeferido">Indeferido</option>
+            </select>
+
+            <button type="button" onclick="criarRequerimento()">Criar Requerimento</button>
+        </form>
+
+        <h2>📋 Lista de Requerimentos</h2>
+        <ul id="listaRequerimentos"></ul>
+    </div>
+
+    <script>
+        const requerimentos = [];
+
+        // RF09.1 - Criar novo requerimento
+        function criarRequerimento() {
+            const tipo = document.getElementById("tipo").value;
+            const descricao = document.getElementById("descricao").value;
+            const data = document.getElementById("data").value;
+            const status = document.getElementById("status").value;
+
+            if (!tipo || !descricao || !data || !status) {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            requerimentos.push({ tipo, descricao, data, status });
+            atualizarLista();
+            document.getElementById("formRequerimento").reset();
+        }
+
+        // Atualizar lista na tela
+        function atualizarLista() {
+            const lista = document.getElementById("listaRequerimentos");
+            lista.innerHTML = "";
+
+            requerimentos.forEach((r, i) => {
+                const item = document.createElement("li");
+                item.textContent = `${i + 1}. 📄 ${r.tipo} | 📝 ${r.descricao} | 📅 ${r.data} | 🔎 Status: ${r.status}`;
+
+                // RF09.2 - Editar requerimento
+                const btnEditar = document.createElement("button");
+                btnEditar.textContent = "✏️ Editar";
+                btnEditar.onclick = () => editarRequerimento(i);
+
+                // RF09.4 - Excluir somente se estiver pendente
+                const btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "🗑️ Excluir";
+                btnExcluir.onclick = () => excluirRequerimento(i);
+
+                item.appendChild(btnEditar);
+                item.appendChild(btnExcluir);
+                lista.appendChild(item);
+            });
+        }
+
+        // RF09.2 - Editar requerimento
+        function editarRequerimento(index) {
+            const req = requerimentos[index];
+
+            if (req.status === "Deferido" || req.status === "Indeferido") {
+                alert("Não é possível editar um requerimento já finalizado.");
+                return;
+            }
+
+            document.getElementById("tipo").value = req.tipo;
+            document.getElementById("descricao").value = req.descricao;
+            document.getElementById("data").value = req.data;
+            document.getElementById("status").value = req.status;
+
+            requerimentos.splice(index, 1);
+            atualizarLista();
+        }
+
+        // RF09.4 - Excluir requerimento apenas se pendente
+        function excluirRequerimento(index) {
+            if (requerimentos[index].status !== "Pendente") {
+                alert("Só é possível excluir requerimentos com status Pendente.");
+                return;
+            }
+
+            if (confirm("Deseja realmente excluir este requerimento?")) {
+                requerimentos.splice(index, 1);
+                atualizarLista();
+            }
+        }
+
+        // RF09.5 - Consultar requerimentos
+        function filtrar(tipo, status, data) {
+            return requerimentos.filter(r => {
+                const tipoOK = !tipo || r.tipo.includes(tipo);
+                const statusOK = !status || r.status === status;
+                const dataOK = !data || r.data === data;
+                return tipoOK && statusOK && dataOK;
+            });
+        }
+    </script>
+</body>
+</html>

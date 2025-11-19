@@ -1,0 +1,51 @@
+Aluno.java:
+public class Aluno {
+    private String nome;
+    private String matricula;
+    private String serie;
+    private String turma;
+
+    public Aluno(String nome, String matricula, String serie, String turma) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.serie = serie;
+        this.turma = turma;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno: " + nome + " | Matrícula: " + matricula + " | Série: " + serie + " | Turma: " + turma;
+    }
+}

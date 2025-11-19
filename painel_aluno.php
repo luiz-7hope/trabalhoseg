@@ -5,68 +5,190 @@ if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'alunos') {
     exit;
 }
 
-$msg = "";
+$nome = $_SESSION['nome'];
+$ra = $_SESSION['ra'];
+$curso = $_SESSION['curso'];
+$status = "Ativo"; // pode vir do banco depois
 
-// ====== Editar nome ======
-if (isset($_POST["acao"]) && $_POST["acao"] === "editar") {
-    $novo_nome = trim($_POST["novo_nome"] ?? "");
-    if ($novo_nome) {
-        $_SESSION["usuario"] = htmlspecialchars($novo_nome, ENT_QUOTES);
-        $msg = "Nome atualizado com sucesso!";
-    } else {
-        $msg = "O nome não pode ficar vazio.";
-    }
-}
-
-// ====== Excluir conta ======
-if (isset($_POST["acao"]) && $_POST["acao"] === "excluir") {
-    session_unset();
-    session_destroy();
-    header("Location: index.html");
-    exit();
-}
+// Exemplo de avisos (você pode puxar do banco)
+$avisos = [
+  ["titulo" => "INFORMATIVO – REGULARIZAÇÃO DOCUMENTAL", "data" => "06/11/2025", "texto" => "Atualize seus documentos pendentes no portal do aluno."],
+  ["titulo" => "ABERTURA DE INSCRIÇÕES – SEMANA ACADÊMICA", "data" => "12/11/2025", "texto" => "Participe das palestras e oficinas abertas a todos os alunos."]
+];
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Painel do Aluno</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>Painel do Aluno - GES</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ====== LAYOUT BASE ====== */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f6f9;
+    }
+    .layout {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* ====== MENU LATERAL ====== */
+    .sidebar {
+      width: 250px;
+      background-color: #004c97;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .sidebar .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      line-height: 1.2;
+    }
+    .sidebar nav a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 4px 0;
+      font-size: 15px;
+    }
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(255,255,255,0.2);
+    }
+    .logout {
+      margin-top: auto;
+      color: #ffcccb;
+    }
+
+    /* ====== CONTEÚDO PRINCIPAL ====== */
+    .content {
+      flex: 1;
+      background: #f4f6f9;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    /* ====== TOPO (INFO DO ALUNO) ====== */
+    .topbar {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .aluno-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .aluno-foto {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: #ccc;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/149/149071.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .aluno-dados strong {
+      font-size: 18px;
+      color: #004c97;
+    }
+    .aluno-dados small {
+      color: #555;
+    }
+    .status {
+      background: #d4edda;
+      color: #155724;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ====== AVISOS ====== */
+    .dashboard h2 {
+      color: #004c97;
+      margin-bottom: 15px;
+    }
+    .cards {
+      display: grid;
+      gap: 15px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      color: #004c97;
+      margin-bottom: 8px;
+    }
+    .card p {
+      margin: 0;
+      color: #333;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>🎓 Painel do Aluno</h1>
-  <p>Bem-vindo(a), <strong><?php echo $_SESSION["usuario"]; ?></strong></p>
-  <a href="logout.php" class="btn-logout">Sair</a>
-</header>
+  <div class="layout">
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+      <div class="logo">GES<br><span style="font-size:14px;">Painel do Aluno</span></div>
+      <nav>
+        <a href="#" class="active">📢 Avisos</a>
+        <a href="#">📅 Calendário</a>
+        <a href="#">🧾 Notas</a>
+        <a href="#">📚 Disciplinas</a>
+        <a href="#">💬 Mensagens</a>
+        <a href="#">⚙️ Configurações</a>
+        <a href="logout.php" class="logout">Sair</a>
+      </nav>
+    </aside>
 
-<main>
-  <section>
-    <h2>Editar Perfil</h2>
-    <p><?php echo $msg ?: "Atualize seu nome abaixo:"; ?></p>
-    <form method="POST">
-      <input type="hidden" name="acao" value="editar">
-      <input type="text" name="novo_nome" value="<?php echo $_SESSION["usuario"]; ?>" required>
-      <button class="btn btn-edit">Salvar</button>
-    </form>
-  </section>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+      <header class="topbar">
+        <div class="aluno-info">
+          <div class="aluno-foto"></div>
+          <div class="aluno-dados">
+            <strong><?php echo $nome; ?></strong><br>
+            <small><?php echo $curso; ?> | RA: <?php echo $ra; ?></small>
+          </div>
+        </div>
+        <div class="status"><?php echo $status; ?></div>
+      </header>
 
-  <section>
-    <h2>Área do Aluno</h2>
-    <ul>
-      <li><a href="#">Ver notas e boletim</a></li>
-      <li><a href="#">Consultar disciplinas</a></li>
-      <li><a href="#">Mensagens da escola</a></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Excluir Conta</h2>
-    <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?');">
-      <input type="hidden" name="acao" value="excluir">
-      <button class="btn btn-delete">Excluir Conta</button>
-    </form>
-  </section>
-</main>
+      <section class="dashboard">
+        <h2>Avisos Recentes</h2>
+        <div class="cards">
+          <?php foreach ($avisos as $a): ?>
+            <div class="card">
+              <div class="card-header">
+                <span><?php echo $a["titulo"]; ?></span>
+                <span><?php echo $a["data"]; ?></span>
+              </div>
+              <p><?php echo $a["texto"]; ?></p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
