@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário Anual - GES</title>
+  <link rel="stylesheet" href="painel.css">
+  <link rel="stylesheet" href="style_aluno.css">
+  <style>
+    /* Estilos específicos para o calendário */
+    .calendar-container {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .calendar-header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: #333;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 colunas para os meses */
+      gap: 20px;
+    }
+    .month {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .month h4 {
+      margin-top: 0;
+      color: #007bff;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    .month table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+    }
+    .month th {
+      background-color: #e9ecef;
+      color: #333;
+      padding: 5px 0;
+      font-weight: normal;
+    }
+    .month td {
+      padding: 3px 0;
+      border: 1px solid #eee;
+    }
+    .month td.today {
+      background-color: #ffc107;
+      color: #333;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+    .month td.event {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+    .month td:nth-child(1), .month td:nth-child(7) {
+      color: #dc3545; /* Finais de semana em vermelho */
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- MENU LATERAL (Simplificado para esta página) -->
+    <aside class="sidebar">
+      <div class="logo">GES<br><span style="font-size:14px;">Painel do Aluno</span></div>
+      <nav>
+        <a href="painel_aluno.php">🏠 Voltar ao Painel</a>
+        <a href="boletim.php">🧾 Meu Boletim</a>
+        <a href="calendario_anual.html" class="active">📅 Calendário</a>
+        <a href="#">📚 Disciplinas</a>
+        <a href="#">💬 Mensagens</a>
+        <a href="#">⚙️ Configurações</a>
+        <a href="logoout.php">Sair</a>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+      <header class="topbar">
+        <h1>📅 Calendário Acadêmico Anual</h1>
+      </header>
+
+      <div class="calendar-container">
+        <div class="calendar-header">Ano Letivo 2025</div>
+        <div class="calendar-grid">
+          <!-- Mês de Janeiro -->
+          <div class="month">
+            <h4>Janeiro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+                <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Fevereiro -->
+          <div class="month">
+            <h4>Fevereiro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td class="event">20</td><td class="event">21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Março -->
+          <div class="month">
+            <h4>Março</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+                <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Abril -->
+          <div class="month">
+            <h4>Abril</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+                <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="event">19</td><td>20</td></tr>
+                <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Maio -->
+          <div class="month">
+            <h4>Maio</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Junho -->
+          <div class="month">
+            <h4>Junho</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
+                <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+                <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+                <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+                <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+                <tr><td>30</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Julho -->
+          <div class="month">
+            <h4>Julho</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+                <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+                <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Agosto -->
+          <div class="month">
+            <h4>Agosto</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+                <tr><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+                <tr><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+                <tr><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+                <tr><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Setembro -->
+          <div class="month">
+            <h4>Setembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Outubro -->
+          <div class="month">
+            <h4>Outubro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+                <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Novembro -->
+          <div class="month">
+            <h4>Novembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td class="today">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Dezembro -->
+          <div class="month">
+            <h4>Dezembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9em;">* Datas em verde (ex: 20 e 21 de Fev, 19 de Abr) indicam eventos acadêmicos importantes.</p>
+      </div>
+    </main>
+  </div>
+
+<!-- BEGIN: Eventos JS (localStorage CRUD, múltiplos eventos por dia) -->
+<style>
+  /* small styles for modal and event badges to match existing theme */
+  .event-badge{display:block;margin:6px auto 0; padding:4px 6px; border-radius:4px; color:#fff; font-weight:600; font-size:0.8em; max-width:100%; box-sizing:border-box; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .event-actions{margin-top:4px; display:flex; gap:6px; justify-content:center;}
+  .btn-mini{background:#fff;border:1px solid rgba(0,0,0,0.08); padding:3px 6px; border-radius:4px; cursor:pointer; font-size:0.75em;}
+  .btn-add-day{float:right;background:transparent;border:none;color:#007bff;font-weight:700;cursor:pointer;}
+  /* modal */
+  #evModalBackdrop{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center; z-index:9999;}
+  #evModal{background:#fff;padding:16px;border-radius:8px;width:360px; max-width:95%; box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+  #evModal h3{margin:0 0 8px 0;}
+  #evModal label{font-size:0.85em;color:#333; display:block; margin-top:8px;}
+  #evModal input[type="text"], #evModal textarea, #evModal input[type="date"], #evModal input[type="color"]{width:100%; padding:8px; border-radius:6px; border:1px solid #e6e6e6; margin-top:4px;}
+  #evList{max-height:220px; overflow:auto; margin-top:6px;}
+  .ev-row{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px; border-radius:6px; background:#f7f7f7; margin-bottom:6px;}
+  .ev-row .meta{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+</style>
+
+<!-- Modal HTML -->
+<div id="evModalBackdrop">
+  <div id="evModal" role="dialog" aria-modal="true">
+    <h3 id="modalTitle">Criar Evento</h3>
+    <form id="evForm">
+      <input type="hidden" id="ev_id" />
+      <label>Título <input id="ev_title" type="text" required /></label>
+      <label>Data <input id="ev_date" type="date" required /></label>
+      <label>Cor <input id="ev_color" type="color" value="#28a745" /></label>
+      <label>Descrição <textarea id="ev_desc"></textarea></label>
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
+        <button type="button" id="evCancel" class="btn-mini">Cancelar</button>
+        <button type="submit" id="evSave" class="btn-mini">Salvar</button>
+      </div>
+    </form>
+    <hr style="margin:10px 0;" />
+    <div>
+      <strong>Eventos do dia</strong>
+      <div id="evList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Config
+  const storagePrefix = 'calendarioEventos-'; // + year
+  const containerSelector = '.calendar-grid'; // where months are
+  const yearTextEl = document.querySelector('.calendar-header');
+  let year =  new Date().getFullYear();
+  if(yearTextEl){
+    const m = yearTextEl.textContent.match(/(\d{4})/);
+    if(m) year = Number(m[1]);
+  }
+
+  // utility to format YYYY-MM-DD
+  function z(n){ return String(n).padStart(2,'0'); }
+  function ymd(y,m,d){ return `${y}-${z(m)}-${z(d)}`; }
+
+  // Prepare DOM: assign data-month to months and data-date to tds with numbers
+  function annotateTableCells(){
+    const monthEls = Array.from(document.querySelectorAll('.calendar-grid .month'));
+    monthEls.forEach((monthEl, idx) => {
+      const monthIndex = idx + 1; // 1..12 based on order
+      monthEl.dataset.month = String(monthIndex).padStart(2,'0');
+      // find all td inside this month and iterate to find day numbers
+      const tds = monthEl.querySelectorAll('table tbody tr td');
+      let day = 1;
+      // Approach: iterate through tds, if td contains only a number (trimmed) or starts with number, assign date
+      tds.forEach(td => {
+        const text = td.textContent.trim();
+        const numMatch = text.match(/^(\d{1,2})/); // day number at start
+        if(numMatch){
+          const d = Number(numMatch[1]);
+          // compute date string
+          const dateStr = ymd(year, monthIndex, d);
+          td.dataset.date = dateStr;
+          // wrap contents into day-cell if not already
+          if(!td.querySelector('.day-wrapper')){
+            const inner = td.innerHTML;
+            td.innerHTML = `<div class="day-wrapper"><div class="day-number">${d}</div><div class="day-controls"></div><div class="events-container"></div></div>`;
+            // add small add button in controls
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn-add-day';
+            btn.title = 'Adicionar evento';
+            btn.innerText = '+';
+            btn.addEventListener('click', (e)=>{ e.stopPropagation(); openCreateModal(dateStr); });
+            td.querySelector('.day-controls').appendChild(btn);
+          }
+        }
+      });
+    });
+  }
+
+  // localStorage helpers
+  function storageKey(y){ return storagePrefix + y; }
+  function loadEvents(y){ try{ return JSON.parse(localStorage.getItem(storageKey(y)) || '[]'); }catch(e){ return []; } }
+  function saveEvents(y, arr){ localStorage.setItem(storageKey(y), JSON.stringify(arr)); }
+
+  function generateId(){ return 'ev_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8); }
+
+  // CRUD
+  function createEvent(ev){ const y = new Date(ev.date).getFullYear(); const arr = loadEvents(y); arr.push(Object.assign({id: generateId(), createdAt: new Date().toISOString()}, ev)); saveEvents(y, arr); }
+  function updateEvent(id, payload){ // find across years near current year
+    const years = [year-1, year, year+1, year+2];
+    for(const y of years){
+      const arr = loadEvents(y);
+      const idx = arr.findIndex(x=>x.id===id);
+      if(idx!==-1){ arr.splice(idx,1); saveEvents(y,arr); break; }
+    }
+    // push to new year
+    const ynew = new Date(payload.date).getFullYear();
+    const arr2 = loadEvents(ynew);
+    arr2.push(Object.assign({id:id}, payload));
+    saveEvents(ynew, arr2);
+  }
+  function deleteEvent(id){
+    const years = [year-1, year, year+1, year+2];
+    for(const y of years){
+      const arr = loadEvents(y);
+      const idx = arr.findIndex(x=>x.id===id);
+      if(idx!==-1){ arr.splice(idx,1); saveEvents(y,arr); return true; }
+    }
+    return false;
+  }
+
+  // render events into table cells
+  function renderEvents(){
+    // clear all containers
+    document.querySelectorAll('.events-container').forEach(el=> el.innerHTML = '');
+
+    const evs = loadEvents(year);
+    evs.forEach(ev => {
+      const el = document.querySelector(`[data-date="${ev.date}"]`);
+      if(!el) return;
+      const container = el.querySelector('.events-container');
+      if(!container) return;
+      // create badge and actions
+      const badge = document.createElement('div');
+      badge.className = 'event-badge';
+      badge.style.background = ev.color || '#28a745';
+      badge.textContent = ev.title;
+      // actions small
+      const actions = document.createElement('div');
+      actions.className = 'event-actions';
+      const btnView = document.createElement('button'); btnView.className='btn-mini'; btnView.textContent='Ver'; btnView.addEventListener('click', (e)=>{ e.stopPropagation(); alert(ev.title + "\\n\\n" + (ev.description||'') ); });
+      const btnEdit = document.createElement('button'); btnEdit.className='btn-mini'; btnEdit.textContent='Editar'; btnEdit.addEventListener('click',(e)=>{ e.stopPropagation(); openEditModal(ev.id); });
+      const btnDel = document.createElement('button'); btnDel.className='btn-mini'; btnDel.textContent='Excluir'; btnDel.addEventListener('click',(e)=>{ e.stopPropagation(); if(confirm('Confirma exclusão?')){ deleteEvent(ev.id); renderEvents(); } });
+      actions.appendChild(btnView); actions.appendChild(btnEdit); actions.appendChild(btnDel);
+      container.appendChild(badge);
+      container.appendChild(actions);
+    });
+  }
+
+  // Modal logic
+  const backdrop = document.getElementById('evModalBackdrop');
+  const modal = document.getElementById('evModal');
+  const form = document.getElementById('evForm');
+  const fldId = document.getElementById('ev_id');
+  const fldTitle = document.getElementById('ev_title');
+  const fldDate = document.getElementById('ev_date');
+  const fldColor = document.getElementById('ev_color');
+  const fldDesc = document.getElementById('ev_desc');
+  const evList = document.getElementById('evList');
+  document.getElementById('evCancel').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e){ if(e.target===backdrop) closeModal(); });
+
+  function openCreateModal(dateStr){
+    fldId.value = '';
+    fldTitle.value = '';
+    fldDate.value = dateStr;
+    fldColor.value = '#28a745';
+    fldDesc.value = '';
+    document.getElementById('modalTitle').textContent = 'Criar Evento';
+    populateEvList(dateStr);
+    backdrop.style.display = 'flex';
+  }
+
+  function openEditModal(id){
+    // find event
+    const years = [year-1, year, year+1, year+2];
+    for(const y of years){
+      const arr = loadEvents(y);
+      const ev = arr.find(x=>x.id===id);
+      if(ev){
+        fldId.value = ev.id;
+        fldTitle.value = ev.title;
+        fldDate.value = ev.date;
+        fldColor.value = ev.color || '#28a745';
+        fldDesc.value = ev.description || '';
+        document.getElementById('modalTitle').textContent = 'Editar Evento';
+        populateEvList(ev.date);
+        backdrop.style.display = 'flex';
+        return;
+      }
+    }
+    alert('Evento não encontrado');
+  }
+
+  function closeModal(){ backdrop.style.display = 'none'; evList.innerHTML = ''; }
+
+  function populateEvList(dateStr){
+    evList.innerHTML = '';
+    const arr = loadEvents(new Date(dateStr).getFullYear()).filter(e=>e.date===dateStr);
+    if(arr.length===0){ evList.innerHTML = '<div style="color:#666; font-size:0.9em;">Nenhum evento neste dia.</div>'; return; }
+    arr.forEach(ev=>{
+      const row = document.createElement('div'); row.className='ev-row';
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = ev.title + (ev.description ? ' — ' + ev.description : '');
+      const actions = document.createElement('div');
+      const btnE = document.createElement('button'); btnE.className='btn-mini'; btnE.textContent='Editar'; btnE.addEventListener('click', ()=>{ openEditModal(ev.id); });
+      const btnD = document.createElement('button'); btnD.className='btn-mini'; btnD.textContent='Excluir'; btnD.addEventListener('click', ()=>{ if(confirm('Excluir?')){ deleteEvent(ev.id); populateEvList(dateStr); renderEvents(); } });
+      actions.appendChild(btnE); actions.appendChild(btnD);
+      row.appendChild(meta); row.appendChild(actions);
+      evList.appendChild(row);
+    });
+  }
+
+  // form submit handler
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const id = fldId.value;
+    const obj = { title: fldTitle.value.trim(), date: fldDate.value, color: fldColor.value, description: fldDesc.value.trim() };
+    if(!obj.title || !obj.date){ alert('Título e data são obrigatórios'); return; }
+    if(id){
+      updateEvent(id, Object.assign({id: id}, obj));
+    } else {
+      createEvent(obj);
+    }
+    closeModal();
+    renderEvents();
+  });
+
+  // initial flow
+  annotateTableCells();
+  renderEvents();
+
+  // allow clicking on td to open create modal
+  document.querySelectorAll('.calendar-grid td[data-date]').forEach(td => {
+    td.addEventListener('click', (e)=>{
+      const date = td.dataset.date;
+      openCreateModal(date);
+    });
+  });
+
+  // support adding via existing "event" classes (if any were pre-marked)
+  // consider seeding: if user had class 'event' on some tds, we don't touch them beyond assigning data-date
+
+  // expose some functions to console for debugging
+  window.__cal = { createEvent, updateEvent, deleteEvent, renderEvents, loadEvents };
+})();
+</script>
+<!-- END: Eventos JS -->
+</body>
+</html>
