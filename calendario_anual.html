@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário Anual - GES</title>
+  <link rel="stylesheet" href="painel.css">
+  <link rel="stylesheet" href="style_aluno.css">
+  <style>
+    /* Estilos específicos para o calendário */
+    .calendar-container {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .calendar-header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: #333;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 colunas para os meses */
+      gap: 20px;
+    }
+    .month {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .month h4 {
+      margin-top: 0;
+      color: #007bff;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    .month table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+    }
+    .month th {
+      background-color: #e9ecef;
+      color: #333;
+      padding: 5px 0;
+      font-weight: normal;
+    }
+    .month td {
+      padding: 3px 0;
+      border: 1px solid #eee;
+    }
+    .month td.today {
+      background-color: #ffc107;
+      color: #333;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+    .month td.event {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+    .month td:nth-child(1), .month td:nth-child(7) {
+      color: #dc3545; /* Finais de semana em vermelho */
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- MENU LATERAL (Simplificado para esta página) -->
+    <aside class="sidebar">
+      <div class="logo">GES<br><span style="font-size:14px;">Painel do Aluno</span></div>
+      <nav>
+        <a href="painel_aluno.php">🏠 Voltar ao Painel</a>
+        <a href="boletim.php">🧾 Meu Boletim</a>
+        <a href="calendario_anual.html" class="active">📅 Calendário</a>
+        <a href="#">📚 Disciplinas</a>
+        <a href="#">💬 Mensagens</a>
+        <a href="#">⚙️ Configurações</a>
+        <a href="logoout.php">Sair</a>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+      <header class="topbar">
+        <h1>📅 Calendário Acadêmico Anual</h1>
+      </header>
+
+      <div class="calendar-container">
+        <div class="calendar-header">Ano Letivo 2025</div>
+        <div class="calendar-grid">
+          <!-- Mês de Janeiro -->
+          <div class="month">
+            <h4>Janeiro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+                <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Fevereiro -->
+          <div class="month">
+            <h4>Fevereiro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td class="event">20</td><td class="event">21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Março -->
+          <div class="month">
+            <h4>Março</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+                <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Abril -->
+          <div class="month">
+            <h4>Abril</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+                <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="event">19</td><td>20</td></tr>
+                <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Maio -->
+          <div class="month">
+            <h4>Maio</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Junho -->
+          <div class="month">
+            <h4>Junho</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
+                <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+                <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+                <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+                <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+                <tr><td>30</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Julho -->
+          <div class="month">
+            <h4>Julho</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+                <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+                <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Agosto -->
+          <div class="month">
+            <h4>Agosto</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+                <tr><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+                <tr><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+                <tr><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+                <tr><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Setembro -->
+          <div class="month">
+            <h4>Setembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Outubro -->
+          <div class="month">
+            <h4>Outubro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+                <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Novembro -->
+          <div class="month">
+            <h4>Novembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td class="today">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Mês de Dezembro -->
+          <div class="month">
+            <h4>Dezembro</h4>
+            <table>
+              <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9em;">* Datas em verde (ex: 20 e 21 de Fev, 19 de Abr) indicam eventos acadêmicos importantes.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
