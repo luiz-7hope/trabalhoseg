@@ -65,6 +65,20 @@
       font-weight: bold;
       border-radius: 2px;
     }
+    /* Estilo para Feriados Nacionais */
+    .month td.holiday {
+      background-color: #c82333; /* Vermelho  */
+      color: white;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+    /* Estilo para Pontos Facultativos */
+    .month td.ponto-facultativo {
+      background-color: #ffc107; /* Laranja */
+      color: #333;
+      font-weight: bold;
+      border-radius: 2px;
+    }
     .month td:nth-child(1), .month td:nth-child(7) {
       color: #dc3545; /* Finais de semana em vermelho */
     }
@@ -72,7 +86,6 @@
 </head>
 <body>
   <div class="layout">
-    <!-- MENU LATERAL (Simplificado para esta página) -->
     <aside class="sidebar">
       <div class="logo">GES<br><span style="font-size:14px;">Painel do Aluno</span></div>
       <nav>
@@ -86,7 +99,6 @@
       </nav>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main class="content">
       <header class="topbar">
         <h1>📅 Calendário Acadêmico Anual</h1>
@@ -95,13 +107,12 @@
       <div class="calendar-container">
         <div class="calendar-header">Ano Letivo 2025</div>
         <div class="calendar-grid">
-          <!-- Mês de Janeiro -->
           <div class="month">
             <h4>Janeiro</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
-                <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                <tr><td></td><td></td><td>1</td><td class="holiday">2</td><td>3</td><td>4</td><td>5</td></tr>
                 <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
                 <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
                 <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
@@ -109,7 +120,6 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Fevereiro -->
           <div class="month">
             <h4>Fevereiro</h4>
             <table>
@@ -123,14 +133,13 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Março -->
           <div class="month">
             <h4>Março</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
                 <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
-                <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td class="ponto-facultativo">3</td><td class="ponto-facultativo">4</td><td class="ponto-facultativo">5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
                 <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
                 <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
                 <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
@@ -138,7 +147,6 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Abril -->
           <div class="month">
             <h4>Abril</h4>
             <table>
@@ -146,27 +154,25 @@
               <tbody>
                 <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
                 <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
-                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="event">19</td><td>20</td></tr>
-                <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                <tr><td>14</td><td>15</td><td>16</td><td>17</td><td class="holiday">18</td><td class="event">19</td><td class="holiday">20</td></tr>
+                <tr><td class="holiday">21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
                 <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
               </tbody>
             </table>
           </div>
-          <!-- Mês de Maio -->
           <div class="month">
             <h4>Maio</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
-                <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td></td><td></td><td></td><td class="holiday">1</td><td>2</td><td>3</td><td>4</td></tr>
                 <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
                 <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
-                <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                <tr><td>19</td><td class="ponto-facultativo">20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
                 <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
               </tbody>
             </table>
           </div>
-          <!-- Mês de Junho -->
           <div class="month">
             <h4>Junho</h4>
             <table>
@@ -175,13 +181,12 @@
                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
                 <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
                 <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
-                <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+                <tr><td>16</td><td>17</td><td>18</td><td class="ponto-facultativo">19</td><td>20</td><td>21</td><td>22</td></tr>
                 <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
                 <tr><td>30</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
               </tbody>
             </table>
           </div>
-          <!-- Mês de Julho -->
           <div class="month">
             <h4>Julho</h4>
             <table>
@@ -195,7 +200,6 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Agosto -->
           <div class="month">
             <h4>Agosto</h4>
             <table>
@@ -209,13 +213,12 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Setembro -->
           <div class="month">
             <h4>Setembro</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
-                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td class="holiday">7</td></tr>
                 <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
                 <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
                 <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
@@ -223,35 +226,32 @@
               </tbody>
             </table>
           </div>
-          <!-- Mês de Outubro -->
           <div class="month">
             <h4>Outubro</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
                 <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
-                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="holiday">12</td></tr>
                 <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
                 <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
                 <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
               </tbody>
             </table>
           </div>
-          <!-- Mês de Novembro -->
           <div class="month">
             <h4>Novembro</h4>
             <table>
               <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
               <tbody>
-                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td class="holiday">2</td></tr>
                 <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
-                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
-                <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td class="holiday">15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td class="holiday">20</td><td>21</td><td>22</td><td>23</td></tr>
                 <tr><td>24</td><td class="today">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
               </tbody>
             </table>
           </div>
-          <!-- Mês de Dezembro -->
           <div class="month">
             <h4>Dezembro</h4>
             <table>
@@ -260,15 +260,285 @@
                 <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
                 <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
                 <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
-                <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td>22</td><td>23</td><td class="holiday">24</td><td class="holiday">25</td><td>26</td><td>27</td><td>28</td></tr>
                 <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <p style="margin-top: 20px; font-size: 0.9em;">* Datas em verde (ex: 20 e 21 de Fev, 19 de Abr) indicam eventos acadêmicos importantes.</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+          * <span style="background-color:#c82333; color:white; padding: 2px 5px; border-radius: 2px;">Vermelho </span>: **Feriado Nacional** (ex: 1º de Jan, 18 e 21 de Abr, 1º de Mai, 20 de Nov, 25 de Dez).<br>
+          * <span style="background-color:#ffc107; color:#333; padding: 2px 5px; border-radius: 2px;">Laranja </span>: **Ponto Facultativo/Recesso** (ex: Carnaval, Corpus Christi).<br>
+          * <span style="background-color:#28a745; color:white; padding: 2px 5px; border-radius: 2px;">Verde</span>: Eventos Acadêmicos Importantes (ex: 20 e 21 de Fev, 19 de Abr).
+        </p>
       </div>
     </main>
   </div>
+
+<style>
+  /* pequenos estilos para o modal e crachás de evento para corresponder ao tema existente */
+  .event-badge{display:block;margin:6px auto 0; padding:4px 6px; border-radius:4px; color:#fff; font-weight:600; font-size:0.8em; max-width:100%; box-sizing:border-box; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .event-actions{margin-top:4px; display:flex; gap:6px; justify-content:center;}
+  .btn-mini{background:#fff;border:1px solid rgba(0,0,0,0.08); padding:3px 6px; border-radius:4px; cursor:pointer; font-size:0.75em;}
+  .btn-add-day{float:right;background:transparent;border:none;color:#007bff;font-weight:700;cursor:pointer;}
+  /* modal */
+  #evModalBackdrop{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center; z-index:9999;}
+  #evModal{background:#fff;padding:16px;border-radius:8px;width:360px; max-width:95%; box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+  #evModal h3{margin:0 0 8px 0;}
+  #evModal label{font-size:0.85em;color:#333; display:block; margin-top:8px;}
+  #evModal input[type="text"], #evModal textarea, #evModal input[type="date"], #evModal input[type="color"]{width:100%; padding:8px; border-radius:6px; border:1px solid #e6e6e6; margin-top:4px;}
+  #evList{max-height:220px; overflow:auto; margin-top:6px;}
+  .ev-row{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px; border-radius:6px; background:#f7f7f7; margin-bottom:6px;}
+  .ev-row .meta{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+</style>
+
+<div id="evModalBackdrop">
+  <div id="evModal" role="dialog" aria-modal="true">
+    <h3 id="modalTitle">Criar Evento</h3>
+    <form id="evForm">
+      <input type="hidden" id="campoId" />
+      <label>Título <input id="campoTitulo" type="text" required /></label>
+      <label>Data <input id="campoData" type="date" required /></label>
+      <label>Cor <input id="campoCor" type="color" value="#28a745" /></label>
+      <label>Descrição <textarea id="campoDescricao"></textarea></label>
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
+        <button type="button" id="btnCancelar" class="btn-mini">Cancelar</button>
+        <button type="submit" id="btnSalvar" class="btn-mini">Salvar</button>
+      </div>
+    </form>
+    <hr style="margin:10px 0;" />
+    <div>
+      <strong>Eventos do dia</strong>
+      <div id="listaEventos"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Configurações
+  const prefixoArmazenamento = 'calendarioEventos-'; // + ano
+  const seletorContainer = '.calendar-grid'; // onde estão os meses
+  const elementoTextoAno = document.querySelector('.calendar-header');
+  let ano =  new Date().getFullYear();
+  if(elementoTextoAno){
+    const m = elementoTextoAno.textContent.match(/(\d{4})/);
+    if(m) ano = Number(m[1]);
+  }
+
+  // Utilitário para formatar AAAA-MM-DD
+  function z(n){ return String(n).padStart(2,'0'); }
+  function ymd(a,m,d){ return `${a}-${z(m)}-${z(d)}`; }
+
+  // 1. Anota as Células da Tabela com data-date
+  function anotarCelulasTabela(){
+    const elementosMes = Array.from(document.querySelectorAll('.calendar-grid .month'));
+    elementosMes.forEach((elementoMes, idx) => {
+      const indiceMes = idx + 1; // 1..12 baseado na ordem
+      elementoMes.dataset.month = String(indiceMes).padStart(2,'0');
+      
+      const tds = elementoMes.querySelectorAll('table tbody tr td');
+      
+      tds.forEach(td => {
+        const texto = td.textContent.trim();
+        const numMatch = texto.match(/^(\d{1,2})/); // número do dia no início
+        if(numMatch){
+          const d = Number(numMatch[1]);
+          const strData = ymd(ano, indiceMes, d);
+          td.dataset.date = strData;
+          
+          // Envolver o conteúdo do dia
+          if(!td.querySelector('.day-wrapper')){
+            td.innerHTML = `<div class="day-wrapper"><div class="day-number">${d}</div><div class="day-controls"></div><div class="events-container"></div></div>`;
+            
+            // Adiciona o botão de adicionar evento
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn-add-day';
+            btn.title = 'Adicionar evento';
+            btn.innerText = '+';
+            btn.addEventListener('click', (e)=>{ e.stopPropagation(); abrirModalCriar(strData); });
+            td.querySelector('.day-controls').appendChild(btn);
+          }
+        }
+      });
+    });
+  }
+
+  // Funções de armazenamento (localStorage)
+  function chaveArmazenamento(a){ return prefixoArmazenamento + a; }
+  function carregarEventos(a){ try{ return JSON.parse(localStorage.getItem(chaveArmazenamento(a)) || '[]'); }catch(e){ return []; } }
+  function salvarEventos(a, arr){ localStorage.setItem(chaveArmazenamento(a), JSON.stringify(arr)); }
+
+  function gerarId(){ return 'ev_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8); }
+
+  // CRUD
+  function criarEvento(ev){ 
+    const a = new Date(ev.data).getFullYear(); 
+    const arr = carregarEventos(a); 
+    arr.push(Object.assign({id: gerarId(), criadoEm: new Date().toISOString()}, ev)); 
+    salvarEventos(a, arr); 
+  }
+  
+  function atualizarEvento(id, payload){ 
+    // Tenta encontrar o evento nos anos próximos
+    const anosVerificar = [ano-1, ano, ano+1, ano+2];
+    for(const a of anosVerificar){
+      const arr = carregarEventos(a);
+      const idx = arr.findIndex(x=>x.id===id);
+      if(idx!==-1){ arr.splice(idx,1); salvarEventos(a,arr); break; }
+    }
+    // Adiciona ao novo ano
+    const anoNovo = new Date(payload.data).getFullYear();
+    const arr2 = carregarEventos(anoNovo);
+    arr2.push(Object.assign({id:id}, payload));
+    salvarEventos(anoNovo, arr2);
+  }
+  
+  function excluirEvento(id){
+    const anosVerificar = [ano-1, ano, ano+1, ano+2];
+    for(const a of anosVerificar){
+      const arr = carregarEventos(a);
+      const idx = arr.findIndex(x=>x.id===id);
+      if(idx!==-1){ arr.splice(idx,1); salvarEventos(a,arr); return true; }
+    }
+    return false;
+  }
+
+  // 2. Renderiza eventos nas células da tabela
+  function renderizarEventos(){
+    // Limpa todos os containers
+    document.querySelectorAll('.events-container').forEach(el=> el.innerHTML = '');
+
+    const eventos = carregarEventos(ano);
+    eventos.forEach(ev => {
+      const el = document.querySelector(`[data-date="${ev.data}"]`);
+      if(!el) return;
+      const container = el.querySelector('.events-container');
+      if(!container) return;
+      
+      // Cria o crachá e ações
+      const badge = document.createElement('div');
+      badge.className = 'event-badge';
+      badge.style.background = ev.cor || '#28a745';
+      badge.textContent = ev.titulo;
+      
+      const actions = document.createElement('div');
+      actions.className = 'event-actions';
+      
+      const btnVer = document.createElement('button'); btnVer.className='btn-mini'; btnVer.textContent='Ver'; 
+      btnVer.addEventListener('click', (e)=>{ e.stopPropagation(); alert(ev.titulo + "\n\n" + (ev.descricao||'') ); });
+      
+      const btnEditar = document.createElement('button'); btnEditar.className='btn-mini'; btnEditar.textContent='Editar'; 
+      btnEditar.addEventListener('click',(e)=>{ e.stopPropagation(); abrirModalEditar(ev.id); });
+      
+      const btnExcluir = document.createElement('button'); btnExcluir.className='btn-mini'; btnExcluir.textContent='Excluir'; 
+      btnExcluir.addEventListener('click',(e)=>{ e.stopPropagation(); if(confirm('Confirma exclusão?')){ excluirEvento(ev.id); renderizarEventos(); } });
+      
+      actions.appendChild(btnVer); actions.appendChild(btnEditar); actions.appendChild(btnExcluir);
+      container.appendChild(badge);
+      container.appendChild(actions);
+    });
+  }
+
+  // Lógica do Modal
+  const fundoModal = document.getElementById('evModalBackdrop');
+  const modal = document.getElementById('evModal');
+  const formulario = document.getElementById('evForm');
+  const campoId = document.getElementById('campoId');
+  const campoTitulo = document.getElementById('campoTitulo');
+  const campoData = document.getElementById('campoData');
+  const campoCor = document.getElementById('campoCor');
+  const campoDescricao = document.getElementById('campoDescricao');
+  const listaEventos = document.getElementById('listaEventos');
+  
+  document.getElementById('btnCancelar').addEventListener('click', fecharModal);
+  fundoModal.addEventListener('click', function(e){ if(e.target===fundoModal) fecharModal(); });
+
+  function abrirModalCriar(strData){
+    campoId.value = '';
+    campoTitulo.value = '';
+    campoData.value = strData;
+    campoCor.value = '#28a745';
+    campoDescricao.value = '';
+    document.getElementById('modalTitle').textContent = 'Criar Evento';
+    preencherListaEventos(strData);
+    fundoModal.style.display = 'flex';
+  }
+
+  function abrirModalEditar(id){
+    // procura o evento
+    const anosVerificar = [ano-1, ano, ano+1, ano+2];
+    for(const a of anosVerificar){
+      const ev = carregarEventos(a).find(x=>x.id===id);
+      if(ev){
+        campoId.value = ev.id;
+        campoTitulo.value = ev.titulo;
+        campoData.value = ev.data;
+        campoCor.value = ev.cor || '#28a745';
+        campoDescricao.value = ev.descricao || '';
+        document.getElementById('modalTitle').textContent = 'Editar Evento';
+        preencherListaEventos(ev.data);
+        fundoModal.style.display = 'flex';
+        return;
+      }
+    }
+    alert('Evento não encontrado');
+  }
+
+  function fecharModal(){ fundoModal.style.display = 'none'; listaEventos.innerHTML = ''; }
+
+  function preencherListaEventos(strData){
+    listaEventos.innerHTML = '';
+    const arr = carregarEventos(new Date(strData).getFullYear()).filter(e=>e.data===strData);
+    if(arr.length===0){ listaEventos.innerHTML = '<div style="color:#666; font-size:0.9em;">Nenhum evento neste dia.</div>'; return; }
+    arr.forEach(ev=>{
+      const row = document.createElement('div'); row.className='ev-row';
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = ev.titulo + (ev.descricao ? ' — ' + ev.descricao : '');
+      const actions = document.createElement('div');
+      const btnE = document.createElement('button'); btnE.className='btn-mini'; btnE.textContent='Editar'; btnE.addEventListener('click', ()=>{ abrirModalEditar(ev.id); });
+      const btnD = document.createElement('button'); btnD.className='btn-mini'; btnD.textContent='Excluir'; btnD.addEventListener('click', ()=>{ if(confirm('Excluir?')){ excluirEvento(ev.id); preencherListaEventos(strData); renderizarEventos(); } });
+      actions.appendChild(btnE); actions.appendChild(btnD);
+      row.appendChild(meta); row.appendChild(actions);
+      listaEventos.appendChild(row);
+    });
+  }
+
+  // Tratador de envio do formulário
+  formulario.addEventListener('submit', function(e){
+    e.preventDefault();
+    const id = campoId.value;
+    const obj = { 
+        titulo: campoTitulo.value.trim(), 
+        data: campoData.value, 
+        cor: campoCor.value, 
+        descricao: campoDescricao.value.trim() 
+    };
+    if(!obj.titulo || !obj.data){ alert('Título e data são obrigatórios'); return; }
+    if(id){
+      atualizarEvento(id, Object.assign({id: id}, obj));
+    } else {
+      criarEvento(obj);
+    }
+    fecharModal();
+    renderizarEventos();
+  });
+
+  // Fluxo inicial
+  anotarCelulasTabela();
+  renderizarEventos();
+
+  // Permite clicar na célula para abrir o modal de criação
+  document.querySelectorAll('.calendar-grid td[data-date]').forEach(td => {
+    td.addEventListener('click', (e)=>{
+      const data = td.dataset.date;
+      abrirModalCriar(data);
+    });
+  });
+
+  // expõe algumas funções para o console para depuração
+  window.__cal = { criarEvento, atualizarEvento, excluirEvento, renderizarEventos, carregarEventos };
+})();
+</script>
 </body>
 </html>
